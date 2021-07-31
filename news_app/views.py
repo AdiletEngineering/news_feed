@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
+from rest_framework.pagination import LimitOffsetPagination
+
 from .models import *
 from .serializers import *
 from rest_framework import generics
@@ -8,6 +10,7 @@ from rest_framework import generics
 
 class NewsList(generics.ListCreateAPIView):
     serializer_class = NewsSerializer
+    pagination_class = LimitOffsetPagination
 
     def get_queryset(self):
 
