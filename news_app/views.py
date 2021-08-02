@@ -14,11 +14,11 @@ class NewsList(generics.ListCreateAPIView):
 
     def get_queryset(self):
 
-        lang = self.request.query_params.get('lang', 'kg')
-        category = self.request.query_params.get('category')
+        lang = self.request.query_params.get('lang')
+        category = self.request.query_params.getlist('category')
         queryset = News.objects.filter(languages__name=lang)
         if category:
-            queryset = News.objects.filter(categories__name=category)
+            queryset = queryset.filter(categories__id__in=category)
         return queryset
 
 
