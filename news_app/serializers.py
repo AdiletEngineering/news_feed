@@ -10,10 +10,11 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class NewsListSerializer(serializers.ModelSerializer):
-    image = ImageSerializer(source='get_logo')
+    images = ImageSerializer(many=True)
+
     class Meta:
         model = News
-        fields = ('id', 'image', 'title')
+        fields = ('id', 'images', 'title')
 
     # def create(self, validated_data):
     #

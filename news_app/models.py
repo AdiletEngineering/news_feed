@@ -33,9 +33,10 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
-    def get_logo(self):
-        logo = Image.objects.filter(news=self).first()
-        return logo
+    # def get_logo(self):
+    #     logo = Image.objects.filter(news=self).first()
+    #     print("logo --> ", logo)
+    #     return logo
 
 
 
@@ -45,5 +46,5 @@ class Image(models.Model):
     order_num = models.IntegerField("порядковый номер картинки")
     active = models.BooleanField(default=True)
 
-    class Meta:
-        ordering = ['order_num', ]
+    # class Meta:
+    #     ordering = ['order_num', ]
