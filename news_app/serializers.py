@@ -15,6 +15,22 @@ class NewsListSerializer(serializers.ModelSerializer):
         model = News
         fields = ('id', 'image', 'title')
 
+    # def create(self, validated_data):
+    #
+    #     images = validated_data.pop('images')
+    #     lang = validated_data.pop('')
+    #
+    #     news = News.objects.create(**validated_data)
+    #
+    #     for image in images:
+    #         Image.objects.create(url=image['url'],
+    #                              order_num=image['order_num'], news=news)
+
+
+
+
+
+
 
 class NewsDetailSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
@@ -27,9 +43,7 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('id', 'name')
+        fields = ('name', 'languages')
 
-
-
-
-
+    def to_representation(self, instance):
+        return {'id': instance.id, 'name': instance.name, 'languages': instance.languages.id}
