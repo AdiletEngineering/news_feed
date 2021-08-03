@@ -13,8 +13,6 @@ urlpatterns = [
     path('category/list', views.CategoryList.as_view()),
     # получить весь список категорий и создание категории
 
-    path('language/<int:pk>', views.LanguageDetail.as_view()),
-    # получить один язык, обновление, удаление
 
 
 

@@ -6,30 +6,14 @@ from .models import *
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = '__all__'
+        fields = ('id', 'url', 'order_num')
 
 
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = '__all__'
-
-
-
-class LanguageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Language
-        fields = '__all__'
-
-
-
-class NewsSerializer(serializers.ModelSerializer):
-    images = ImageSerializer(many=True)
+class NewsListSerializer(serializers.ModelSerializer):
+    image = ImageSerializer(source='get_logo')
     class Meta:
         model = News
-        fields = '__all__'
-
+        fields = ('image', 'title')
 
 
 class NewsDetailSerializer(serializers.ModelSerializer):
@@ -40,10 +24,12 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 
 
 
-class LanguageSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Language
+        model = Category
         fields = '__all__'
+
+
 
 
 
